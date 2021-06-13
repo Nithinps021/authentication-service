@@ -27,7 +27,7 @@ const onlyAdmin = () =>{
             next()
         }
         else{
-            res.status(401).json({message:'You are unauthorized'})
+            res.status(40).json({message:'You are unauthorized'})
         }
     }
 }
