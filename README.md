@@ -6,7 +6,7 @@ docker pull nithinps021/redcarpetup
 ```
 To run the test cases copy paste the below code
 ```
-docker run --name myserver -e type=start -it nithinps021/redcarpetup
+docker run --name mytest -e type=test -it nithinps021/redcarpetup
 ```
 To run the server copy paste the below code
 ```
