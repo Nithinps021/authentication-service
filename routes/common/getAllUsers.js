@@ -15,7 +15,7 @@ getUsersRouter.route('/').get(async(req, res) => {
 getUsersRouter.route('/:id').put(async(req,res)=>{
     try{
         const id = req.params.id
-        const detailsToUpdate=req.body.detailsToUpdate || {}
+        const detailsToUpdate=req.body || {}
         if (Object.keys(detailsToUpdate).length===0){
             const user = await userdetails.findById({_id:id})
             res.status(200).json(user)

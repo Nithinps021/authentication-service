@@ -4,6 +4,16 @@ const loanObj = require('../../db/loanObj');
 const loanRequest = require('../../db/loanRequest')
 
 
+const validateParams=(params)=>{
+  if(params.loanRequestId===undefined){
+    throw {message:'loanRequestId field not present'}
+  }
+  if(params.rate===undefined){
+    throw {message:'rate field not present'}
+
+  }
+}
+
 agentRouter
   .route('/loanRequests')
   .get(async (req, res) => {
@@ -28,6 +38,7 @@ agentRouter
   })
   .post(async(req,res)=>{
     try{
+        validateParams(req.body)
         const {loanRequestId}=req.body
         const rate = Number(req.body.rate)/(100*12)
         const loanDetails = await loanObj.findById({_id:loanRequestId})
@@ -53,11 +64,11 @@ agentRouter
     .put(async(req,res)=>{
       const id = req.params.id
       try{
+
         const loanDetails = await loanRequest.findById({_id:id})
-        // const {period,amount}=req.body
         const {status,_id}=loanDetails
         if (status==='APPROVED'){
-          res.status(401).send({message:"Loan has been approved and not able to change the details"})
+          res.status(403).send({message:"Loan has been approved and not able to change the details"})
         }
         else{
           const amount = req.body.amount || loanDetails.amount

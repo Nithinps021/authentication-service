@@ -16,7 +16,7 @@ const onlyAgent=()=>{
             next()
         }
         else{
-            res.status(401).send({message:"Unauthorized"})
+            res.status(403).send({message:"Unauthorized"})
         }
     }
 }
@@ -27,7 +27,7 @@ const onlyAdmin = () =>{
             next()
         }
         else{
-            res.status(40).json({message:'You are unauthorized'})
+            res.status(403).json({message:'You are unauthorized'})
         }
     }
 }
@@ -38,7 +38,7 @@ const adminOrAgant=()=>{
             next()
         }
         else{
-            res.status(401).json({message:'You are unauthorized'})
+            res.status(403).json({message:'You are unauthorized'})
         }
     }
 }

@@ -10,7 +10,6 @@ adminRouter.route('/').get(async (req, res) => {
 adminRouter.route('/:id').put(async (req, res) => {
   const { loanApproved } = req.body;
   const id = req.params.id;
-//   console.log(, id);
   try {
     if (Boolean(loanApproved)===true) {
 
